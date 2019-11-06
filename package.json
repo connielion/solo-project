@@ -1,0 +1,45 @@
+{
+  "name": "poke-app",
+  "version": "1.0.0",
+  "description": "solo project",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "webpack-dev-server --open --hot --mode development",
+    "dev": "webpack-dev-server",
+    "build": "webpack --mode production",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Connie Lai",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.7.0",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-react": "^7.7.0",
+    "autoprefixer": "^9.7.1",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.2.0",
+    "cssnano": "^4.1.10",
+    "dotenv": "^8.2.0",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "nodemon": "^1.19.4",
+    "postcss-loader": "^3.0.0",
+    "precss": "^4.0.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-router-dom": "^5.1.2",
+    "style-loader": "^1.0.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "ejs": "^2.7.1",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.0",
+    "pg": "^7.12.1",
+    "pokedex-promise-v2": "^3.2.0"
+  }
+}
