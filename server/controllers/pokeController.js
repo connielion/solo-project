@@ -12,17 +12,24 @@ const P = new Pokedex(options);
 
 const pokeController = {};
 
-// pokeController.getList = (req, res, next) => {
-//     const interval = {
-//         limit: 10,
-//         offset: req.params.offset
-//     }
-//     P.getPokemonsList(interval)
-//         .then(function (response) {
-//             console.log(`response in GETLIST`, response);
-//         })
+pokeController.getList = (req, res, next) => {
+    const interval = {
+        limit: 24,
+        offset: 0
+    }
+    P.getPokemonsList(interval)
+        .then(function (response) {
+            //console.log(`response in GETLIST`, response.results);
+            res.locals.list = response.results.map(item => item.url)
+            //console.log(`LIST CONTROLLER: `, res.locals.list)
+            return next();
+        })
+        .catch(err => {
+            console.log(err)
+            return next(err)
+        })
 
-// }
+}
 pokeController.getPoke = (req, res, next) => {
     //console.log('here inside middleware, CONTROLLER', req.params);
     const id = req.params.id;

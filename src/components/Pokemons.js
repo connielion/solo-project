@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 import PokeCard from './PokeCard';
+import List from './List';
+
+
 export default class Pokemons extends Component {
     constructor() {
         super();
         this.state = {
+            fetched: false,
             dexNum: null,
             data: [],
             abilities: [],
@@ -24,14 +28,18 @@ export default class Pokemons extends Component {
     }
     //onClick
     fetchData = function (n) {
-        // console.log(`CLICKED`)
+        console.log(`CLICKED`)
+        if (n === null) this.setState();
+
         fetch(`/pokemon/${n}`)
             .then(res => res.json())
             .then(data => {
                 // console.log(`REACT DATA: `, data);
                 const info = Object.assign({}, data);
                 const { abilities, types, stats } = data;
-                return this.setState({
+                this.state.fetched = true;
+                this.setState({
+                    dexNum: n,
                     data: info,
                     abilities,
                     types,
@@ -40,19 +48,22 @@ export default class Pokemons extends Component {
             })
             .catch(err => console.log(err))
     }
+    componentDidMount() {
+        fetch('/pokemon/pokedex')
+            .then(res => res.json())
+            .then(data => {
+                //console.log(`DATA FROM LIST`, data.list)
+                return this.setState({
+                    list: [...data.list]
+                })
+            })
+            .catch(err => console.log(err))
+    }
 
-
-    // componentDidMount() {
-    //     fetch('/pokemon')
-    //         .then(res => res.json())
-    //         .then(data => this.setState({
-    //             list: [...data.results]
-    //         }))
-    // }
     render() {
 
-
-        const { data } = this.state;
+        const { data, list } = this.state;
+        //console.log(`POKEMON LIST`, list)
         const { id, name, height, weight, sprites } = data;
         const imgUrls = [];
         const statsArr = this.state.stats.map(obj => [obj.stat.name, obj.base_stat]);
@@ -61,20 +72,20 @@ export default class Pokemons extends Component {
         for (let key in sprites) {
             imgUrls.push(sprites[key])
         }
-
-
-        console.log(`this.state - data `, this.state)
+        // console.log(`this.state - data `, this.state)
+        const card = (!this.state.fetched) ? <div className="placeholder-div">Search for a pokemon!</div> : <div className="pokecard-container"> <PokeCard className="pokecard" id={id} name={name} height={height} weight={weight} imgUrls={imgUrls} typesArr={typesArr} abilArr={abilArr} statsArr={statsArr} /></div>
         return <div className="main">
 
             <div className="searchbar">
-                <input type="text" onChange={this.getPokeByDexNum} />
-                <input type="button" value="Search Pokemon By Pokedex Number" onClick={() => this.fetchData(this.state.dexNum)} />
+                <input type="text" placeholder="Enter dex number..." onChange={this.getPokeByDexNum} />
+                <input className="btn btn-outline-success" type="button" value="Search Pokemon By Pokedex Number" onClick={() => this.fetchData(this.state.dexNum)} />
+            </div>
+            <div>
+                {card}
             </div>
 
-            <div className="pokecard-container"> {/* abilities={abilities} types={types} sprites={sprites} */}
-                <PokeCard className="pokecard" id={id} name={name} height={height} weight={weight} imgUrls={imgUrls} typesArr={typesArr} abilArr={abilArr} statsArr={statsArr} />
-            </div>
-
+            <h3>List</h3>
+            <List list={list} />
         </div >
     }
 

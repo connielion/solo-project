@@ -12,27 +12,29 @@ const PokeCard = props => {
         if (a) return <span key={i}> {a} </span>
     })
     const stats = statsArr.reverse().map((arr, i) => {
-        if (arr) return <p key={i}>{arr[0]} : {arr[1]}</p>
+        if (arr) return <li key={i}>{arr[0]} : {arr[1]}</li>
     })
 
     return (
         <div className="contents">
-            <ul>
-                <li>Pokedex #: {id}  <span className="favBtn" onClick={addFav}><i className="fas fa-star"></i></span></li>
-                <li>Pokemon Name: {name}</li>
-                <li>Type(s):
+            <div>
+                <ul>
+                    <li>Pokedex #: {id}  <span className="favBtn" onClick={addFav}><i className="fas fa-star"></i></span></li>
+                    <li>Pokemon Name: {name}</li>
+                    <li>Type(s):
                         {types}
-                </li>
-                <li>Abilities:
+                    </li>
+                    <li>Abilities:
                         {abils}
-                </li>
-                <li>Height: {height} & Weight: {weight}</li>
-                <li>
-                    Stats:
-                    {stats}
-                </li>
-            </ul>
-            <div>{images}</div>
+                    </li>
+                    <li>Height: {height} & Weight: {weight}</li>
+                </ul>
+                <div className="sprites">{images}</div>
+            </div>
+            <div className="stats-div">
+                Base Stats:
+                 <ul className="stats">{stats}</ul>
+            </div>
         </div>
     )
 }

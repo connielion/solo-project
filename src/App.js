@@ -14,19 +14,21 @@ class App extends Component {
         return (
             <Router>
                 <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-                    <a className="navbar-brand" href="#">DexApp</a>
+                    <a className="navbar-brand" href="#">
+                        <img className="logo" src="https://www.trzcacak.rs/myfile/full/39-397461_pokemon-ball-png-transparent-background-pokeball-png.png" alt="logo" />
+                        DexApp</a>
                     <ul className="navbar-nav mr-auto">
                         <li>
-                            <Link to={'/'} className="nav-link">Home</Link>
+                            <Link to={'/'} className="nav-link"> Home <i className="fas fa-home"></i> |</Link>
                         </li>
                         <li>
-                            <Link to={'/register'} className="nav-link"> Register</Link>
+                            <Link to={'/register'} className="nav-link"> Register <i className="fas fa-edit"></i> |</Link>
                         </li>
                         <li>
-                            <Link to={'/login'} className="nav-link"> Login</Link>
+                            <Link to={'/login'} className="nav-link"> Login <i className="fas fa-sign-in-alt"></i> |</Link>
                         </li>
                         <li>
-                            <Link to={'/pokemons'} className="nav-link">Search Pokemons</Link>
+                            <Link to={'/pokemons'} className="nav-link"> Search Pokemons <i className="fas fa-search"></i></Link>
                         </li>
                     </ul>
                 </nav>

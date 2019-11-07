@@ -13,8 +13,12 @@ body {
 }
 
 .navbar {
-    font-size: 20px;
+    font-size: 18px;
     background-color: rgb(192, 33, 33);
+}
+.logo {
+    height: 25px;
+    width: 25px;
 }
 .main {
     margin: 0 auto;
@@ -25,12 +29,35 @@ body {
     padding: 10px;
 }
 .pokecard-container {
-    height: 600px;
-    width: 80%;
+    height: 400px;
+    width: 70%;
     margin: 0 auto;
     border: 1px solid #ccc;
     padding: 10px;
+    border-radius: 10px;
+}
+.placeholder-div {
+    margin: 0 auto;
 }
 .contents {
-    font-size: 20px;
+    font-size: 16px;
+    display: flex;
+    flex-direction: row;
+}
+/* .contents div {
+    border: 1px solid black;
+} */
+.sprites{
+    width: 100%;
+}
+.stats-div{
+    width: 40%;
+}
+.stats {
+    list-style: none;
+}
+
+.register-form {
+    width: 50%;
+    margin: 0 auto;
 }
