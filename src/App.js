@@ -9,11 +9,12 @@ import Register from './components/Register';
 import Pokemons from './components/Pokemons';
 
 class App extends Component {
+
     render() {
         return (
             <Router>
                 <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-                    <a className="navbar-brand" href="#">SOLO</a>
+                    <a className="navbar-brand" href="#">DexApp</a>
                     <ul className="navbar-nav mr-auto">
                         <li>
                             <Link to={'/'} className="nav-link">Home</Link>
@@ -25,7 +26,7 @@ class App extends Component {
                             <Link to={'/login'} className="nav-link"> Login</Link>
                         </li>
                         <li>
-                            <Link to={'/pokemons'} className="nav-link"> Your Pokemons</Link>
+                            <Link to={'/pokemons'} className="nav-link">Search Pokemons</Link>
                         </li>
                     </ul>
                 </nav>
@@ -36,7 +37,6 @@ class App extends Component {
                     <Route path='/login' component={Login} />
                     <Route path='/pokemons' component={Pokemons} />
                 </Switch>
-
             </Router >
         )
     }

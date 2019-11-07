@@ -12,14 +12,23 @@ const P = new Pokedex(options);
 
 const pokeController = {};
 
-// get
+// pokeController.getList = (req, res, next) => {
+//     const interval = {
+//         limit: 10,
+//         offset: req.params.offset
+//     }
+//     P.getPokemonsList(interval)
+//         .then(function (response) {
+//             console.log(`response in GETLIST`, response);
+//         })
+
+// }
 pokeController.getPoke = (req, res, next) => {
-    console.log('here inside middleware, CONTROLLER', req.params);
+    //console.log('here inside middleware, CONTROLLER', req.params);
     const id = req.params.id;
     P.getPokemonByName(id, (response, error) => { // with callback
         if (!error) {
             // console.log('response', id, response);
-
             res.locals.dexNum = response.id; // num
             res.locals.pokemonName = response.species.name; // string
             res.locals.types = response.types; // array of objects
@@ -27,7 +36,7 @@ pokeController.getPoke = (req, res, next) => {
             res.locals.weight = response.weight; // num
             res.locals.abilities = response.abilities; // array of objects
             res.locals.sprites = response.sprites; // object .front_default
-
+            res.locals.stats = response.stats;
             const pokemon = {
                 id: res.locals.dexNum,
                 name: res.locals.pokemonName,
@@ -35,7 +44,8 @@ pokeController.getPoke = (req, res, next) => {
                 abilities: res.locals.abilities,
                 height: res.locals.height,
                 weight: res.locals.weight,
-                sprites: res.locals.sprites
+                sprites: res.locals.sprites,
+                stats: res.locals.stats
             }
             res.locals.pokemon = pokemon;
             return next();
