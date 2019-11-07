@@ -1,10 +1,6 @@
-const HtmlWebPackPlugin = require("html-webpack-plugin");
 const webpack = require('webpack');
 const path = require('path');
-const autoprefixer = require('autoprefixer');
-const PreCSS = require('precss');
-
-
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     entry: [
         './src/index.js'
@@ -37,9 +33,9 @@ module.exports = {
          * to localhost:3000/api/* (where our Express server is running)
          */
         proxy: {
-            '/api/**': {
+            '/': {
                 target: 'http://localhost:3000/',
-                secure: false,
+                //secure: false,
             }
         },
     },
@@ -67,11 +63,8 @@ module.exports = {
         ]// end of rules array
     },// end of modules object
     plugins: [
-        require('autoprefixer'),
-        require('postcss'),
-        new HtmlWebPackPlugin({
-            template: path.resolve(__dirname, 'src', 'index.html'),
-            filename: "./index.html"
+        new HtmlWebpackPlugin({
+            template: './src/index.html'
         })
     ],
     resolve: {

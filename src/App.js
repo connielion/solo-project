@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import './styling/styles.css';
+import '../src/styling/styles.css';
 // import react router
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 // import child components 

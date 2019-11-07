@@ -12,15 +12,19 @@ app.use(express.json());
 //middleware
 app.use(express.urlencoded({ extended: false }));
 
-//static folder
-app.use(express.static(path.join(__dirname, '/src')))
-
-app.use('/api', apiRouter)
-app.get('/', (req, res) => res.status(200).sendFile(path.resolve(__dirname, '../src/index.html')))
-
+app.use(express.static('.'));
+app.use('/pokemon', apiRouter)
+//serve static files
+//app.use(express.static(__dirname + '../src/ styling'));
+// app.use('/dist', express.static(path.join(__dirname, '/dist')))
+// app.get('/', (req, res) => res.status(200).sendFile(path.resolve(__dirname, '../src/index.html')))
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../src/index.html'))
+})
 app.use((req, res) => res.sendStatus(404));
 
 app.use((err, req, res, next) => {
+
     const defaultErr = {
         log: 'Express error handler caught unknown middleware error',
         status: 400,
