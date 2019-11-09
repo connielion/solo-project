@@ -13,7 +13,7 @@ export default class Pokemons extends Component {
             abilities: [],
             types: [],
             stats: [],
-            list: []
+            pokeObjList: {}
         }
         this.getPokeByDexNum = this.getPokeByDexNum.bind(this);
         this.fetchData = this.fetchData.bind(this);
@@ -28,7 +28,7 @@ export default class Pokemons extends Component {
     }
     //onClick
     fetchData = function (n) {
-        console.log(`CLICKED`)
+        //console.log(`CLICKED`)
         if (n === null) this.setState();
 
         fetch(`/pokemon/${n}`)
@@ -48,13 +48,17 @@ export default class Pokemons extends Component {
             })
             .catch(err => console.log(err))
     }
+
+    // addFav = function () {
+    //     console.log(`clicked`)
+    // }
     componentDidMount() {
         fetch('/pokemon/pokedex')
             .then(res => res.json())
             .then(data => {
-                //console.log(`DATA FROM LIST`, data.list)
+                // console.log(`DATA FROM LIST: `, data.list)
                 return this.setState({
-                    list: [...data.list]
+                    pokeObjList: [...data.list]
                 })
             })
             .catch(err => console.log(err))
@@ -62,8 +66,8 @@ export default class Pokemons extends Component {
 
     render() {
 
-        const { data, list } = this.state;
-        //console.log(`POKEMON LIST`, list)
+        const { data, pokeObjList } = this.state;
+        // console.log(`POKEMON LIST`, pokeObjList)
         const { id, name, height, weight, sprites } = data;
         const imgUrls = [];
         const statsArr = this.state.stats.map(obj => [obj.stat.name, obj.base_stat]);
@@ -85,7 +89,7 @@ export default class Pokemons extends Component {
             </div>
 
             <h3>List</h3>
-            <List list={list} />
+            <List pokeObjList={pokeObjList} />
         </div >
     }
 

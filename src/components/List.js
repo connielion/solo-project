@@ -1,38 +1,41 @@
 import React, { Component } from 'react';
-
-
+import PokeDisplay from './PokeDisplay'
 export default class List extends Component {
     constructor(props) {
         super(props)
+        const { pokeObjList } = props;
+        const obj = Object.assign({}, pokeObjList)
         this.state = {
-            objArr: []
+            objArr: obj
         }
-
-    }
-    componentDidMount() {
-        console.log(`this: `, this)
-        console.log(`THIS.PROPS.LIST: `, this.props.list)
-        // // //console.log(`list: `, list)
-        // const req = this.props.list.map(url => fetch(url));
-        // console.log(`req`, req)
-        // Promise.all(req)
-        //     .then(responses => {
-        //         console.log(`RESPONSES: `, responses)
-        //         // return this.setState({
-        //         //     objArr: [...responses]
-        //         // })
-        //     })
+        //this.changeState = this.changeState.bind(this)
     }
 
+    // changeState = function () {
+    //     console.log(this.state.objArr)
+
+    //     // return this.setState({
+    //     //     objArr: [...pokeObjList]
+    //     // })
+    // }
+    // componentDidMount() {
+    //     this.changeState()
+    // }
 
     render() {
-        //console.log(`LIST STATE`, this.props.list)
+        //const { objArr } = this.state;
+        console.log(`pokeObjList: `, Array.isArray(this.props.pokeObjList))
+
+        // const displays = (this.props.pokeObjList !== null) ? this.props.pokeObjList.map((obj, i) => {
+
+        //     return <PokeDisplay key={i} id={obj.id} name={obj.name} spriteUrl={obj.sprites.front_default} />
+        // }) : <div>Loading...</div>
 
         return <div className="list">
             <h3>List Component</h3>
-            <ul>
-                {/* {items} */}
-            </ul>
+            {/* <ul>
+                {displays}
+            </ul> */}
         </div >
     }
 

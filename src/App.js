@@ -7,6 +7,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
 import Pokemons from './components/Pokemons';
+import Favs from './components/Favs';
 
 class App extends Component {
 
@@ -38,6 +39,7 @@ class App extends Component {
                     <Route path='/register' component={Register} />
                     <Route path='/login' component={Login} />
                     <Route path='/pokemons' component={Pokemons} />
+                    <Route path='/favs' component={Favs} />
                 </Switch>
             </Router >
         )

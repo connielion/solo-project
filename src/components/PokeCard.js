@@ -1,7 +1,7 @@
 import React from 'react';
 
 const PokeCard = props => {
-    const { id, name, height, weight, imgUrls, typesArr, abilArr, statsArr, addFav } = props;
+    const { id, name, height, weight, imgUrls, typesArr, abilArr, statsArr } = props;
     const images = imgUrls.map((url, i) => {
         if (url) return <img src={url} alt='pokemon sprite' key={i} />
     })
@@ -19,7 +19,7 @@ const PokeCard = props => {
         <div className="contents">
             <div>
                 <ul>
-                    <li>Pokedex #: {id}  <span className="favBtn" onClick={addFav}><i className="fas fa-star"></i></span></li>
+                    <li>Pokedex #: {id}  <span className="favBtn" ><i className="fas fa-star"></i></span></li>
                     <li>Pokemon Name: {name}</li>
                     <li>Type(s):
                         {types}

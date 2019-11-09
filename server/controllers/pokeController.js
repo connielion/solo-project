@@ -1,6 +1,6 @@
 const db = require('../models/pokeModels');
 const Pokedex = require('pokedex-promise-v2');
-
+const fetch = require('node-fetch');
 const options = {
     protocol: 'http',
     // hostName: 'localhost:8080',
@@ -14,15 +14,24 @@ const pokeController = {};
 
 pokeController.getList = (req, res, next) => {
     const interval = {
-        limit: 24,
+        limit: 10,
         offset: 0
     }
     P.getPokemonsList(interval)
         .then(function (response) {
             //console.log(`response in GETLIST`, response.results);
-            res.locals.list = response.results.map(item => item.url)
-            //console.log(`LIST CONTROLLER: `, res.locals.list)
-            return next();
+
+            const urlFetches = response.results.map(item => {
+                return fetch(item.url)
+                    .then(res => res.json())
+            })
+
+            Promise.all(urlFetches)
+                .then(responses => {
+                    // console.log(`RESPONSES: `, responses);
+                    res.locals.list = responses;
+                    return next();
+                })
         })
         .catch(err => {
             console.log(err)
